@@ -1,3 +1,14 @@
+export type Project = {
+  id: number;
+  title: string;
+  description: string;
+  image?: string;
+  link?: string;
+  github?: string;
+  featured: boolean;
+  tech: string[];
+};
+
 export const PROJECTS = [
   {
     id: 1,
@@ -62,11 +73,11 @@ export const PROJECTS = [
 ];
 
 // Helper function to get featured projects
-export function getFeaturedProjects() {
+export function getFeaturedProjects(): Project[] {
   return PROJECTS.filter(project => project.featured);
 }
 
 // Helper function to get a project by id
-export function getProjectById(id) {
-  return PROJECTS.find(project => project.id === Number(id));
+export function getProjectById(id: number): Project | undefined {
+  return PROJECTS.find(project => project.id === id);
 }

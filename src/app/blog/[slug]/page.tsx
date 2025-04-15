@@ -2,15 +2,25 @@ import { BLOG_POSTS } from '../../blog-posts';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import React from 'react';
-import ReactMarkdown from 'react-markdown'; // Install this: npm install react-markdown
+import ReactMarkdown from 'react-markdown';
 
-export function generateStaticParams() {
+// Define proper types for Next.js App Router
+type Params = {
+  slug: string;
+};
+
+type Props = {
+  params: Params;
+};
+
+// Generate static paths for each blog post
+export function generateStaticParams(): Params[] {
   return BLOG_POSTS.map((post) => ({
     slug: post.slug,
   }));
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+export default function BlogPostPage({ params }: Props) {
   const post = BLOG_POSTS.find((post) => post.slug === params.slug);
   
   if (!post) {
