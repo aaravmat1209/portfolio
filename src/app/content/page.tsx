@@ -1,9 +1,8 @@
 "use client";
-
 import LINKS from '@/links'
 import { BLOG_POSTS } from '../blog-posts'
 import Link from 'next/link';
-import { useState, useEffect, useRef } from 'react';
+import { Suspense, useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { getFeaturedProjects, Project } from '../projects-data';
 
@@ -17,7 +16,7 @@ type Experience = {
   skills: string[];
 };
 
-export default function ContentPage() {
+function ContentPageInner() {
   const [contentVisible, setContentVisible] = useState<boolean>(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [animationKey, setAnimationKey] = useState<number>(0);
@@ -416,5 +415,13 @@ export default function ContentPage() {
         </div>
       </footer>
     </>
+  );
+}
+
+export default function ContentPage() { 
+  return (
+    <Suspense fallback={<div>Loading content...</div>}>
+      <ContentPageInner />
+    </Suspense>
   );
 }

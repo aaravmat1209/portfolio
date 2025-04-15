@@ -4,14 +4,10 @@ import { notFound } from 'next/navigation';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
-// Define proper types for Next.js App Router
-type Params = {
-  slug: string;
-};
-
+// Update PageProps so that both params and searchParams are Promise types
 type PageProps = {
-  params: Params;
-  searchParams?: { [key: string]: string | string[] | undefined };
+  params: Promise<{ slug: string }>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 // Generate static paths for each blog post
@@ -22,8 +18,9 @@ export function generateStaticParams(): { slug: string }[] {
 }
 
 // Use the defined PageProps interface for the component props
-export default function BlogPostPage({ params }: PageProps) {
-  const post = BLOG_POSTS.find((post) => post.slug === params.slug);
+export default async function BlogPostPage({ params }: PageProps) {
+  const resolvedParams = await params; // Await to get the actual params object
+  const post = BLOG_POSTS.find((post) => post.slug === resolvedParams.slug);
 
   if (!post) {
     notFound();
