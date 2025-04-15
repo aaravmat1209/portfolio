@@ -10,9 +10,9 @@ type Params = {
 };
 
 // Updated Props interface to match Next.js App Router expectations
-interface PageProps {
+type PageProps = {
   params: Params;
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
 // Generate static paths for each blog post
@@ -25,7 +25,7 @@ export function generateStaticParams(): { slug: string }[] {
 // Updated function signature to match Next.js App Router expectations
 export default function BlogPostPage({ params }: PageProps) {
   const post = BLOG_POSTS.find((post) => post.slug === params.slug);
-  
+
   if (!post) {
     notFound();
   }
@@ -33,8 +33,8 @@ export default function BlogPostPage({ params }: PageProps) {
   return (
     <div className="text-foreground mx-auto max-w-[800px] p-8 md:p-16">
       <div className="mb-8 flex items-center">
-        <Link 
-          href="/blog" 
+        <Link
+          href="/blog"
           className="mr-4 text-sm border-border bg-secondary-background rounded-base border-2 px-4 py-2 hover:bg-main hover:text-main-foreground transition-colors"
         >
           ← All posts
@@ -44,7 +44,7 @@ export default function BlogPostPage({ params }: PageProps) {
       <article className="border-border shadow-shadow bg-secondary-background rounded-base border-2 p-6">
         <h1 className="font-heading text-2xl sm:text-3xl">{post.title}</h1>
         <p className="text-sm mt-2 opacity-70">{post.date}</p>
-        
+
         <div className="mt-8 prose prose-green dark:prose-invert max-w-none">
           <ReactMarkdown>{post.content}</ReactMarkdown>
         </div>
