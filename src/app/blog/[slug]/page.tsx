@@ -9,11 +9,10 @@ type Params = {
   slug: string;
 };
 
-// Updated Props interface to match Next.js App Router expectations
 type PageProps = {
   params: Params;
   searchParams?: { [key: string]: string | string[] | undefined };
-}
+};
 
 // Generate static paths for each blog post
 export function generateStaticParams(): { slug: string }[] {
@@ -22,12 +21,8 @@ export function generateStaticParams(): { slug: string }[] {
   }));
 }
 
-// Use the Next.js built-in types instead of custom types
-export default function BlogPostPage({ 
-  params 
-}: { 
-  params: { slug: string } 
-}) {
+// Use the defined PageProps interface for the component props
+export default function BlogPostPage({ params }: PageProps) {
   const post = BLOG_POSTS.find((post) => post.slug === params.slug);
 
   if (!post) {
