@@ -11,7 +11,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState(null);
   const [typedText, setTypedText] = useState('');
   const [animationKey, setAnimationKey] = useState(0);
-  const fullText = "Hello, I am Aarav Matalia, welcome to my website!";
+  const fullText = "Hi, I am Aarav Matalia, welcome to my portfolio";
   const typingSpeed = 60; // ms per character
   const sections = ["About", "Experience", "Projects", "Skills", "Blog"]; // Added Experience
   
@@ -209,27 +209,27 @@ export default function Home() {
               <div className="space-y-8">
                 {[
                   {
-                    role: "Cloud Developer",
-                    company: "AWS Cloud Innovation Center",
+                    role: "Software Engineer Intern",
+                    company: "Amazon Web Services",
                     period: "May 2024 - Aug 2024",
-                    location: "Scottsdale, AZ",
-                    description: "Deploying AWS-powered AI/ML cloud solutions for public sector challenges in Arizona.",
+                    location: "Seattle, WA",
+                    description: "Working with the AWS Elastic Compute Cloud (EC2) team to enhance cloud infrastructure and services.",
                     skills: ["AWS", "Cloud Infrastructure", "Backend Development"]
                   },
                   {
                     role: "Machine Learning Intern",
-                    company: "ChargeZone",
-                    period: "August 2024 - December 2024",
+                    company: "ASU AI Advancement Center",
+                    period: "Jan 2024 - Present",
                     location: "Tempe, AZ",
-                    description: "Developed EV charging data pipeline & analysis to drive insights and business strategy.",
-                    skills: ["Machine Learning", "Data Analysis", "EV Infrastructure", "Python"]
+                    description: "Developing deep learning models for natural language processing and computer vision applications.",
+                    skills: ["PyTorch", "NLP", "Computer Vision", "Large Language Models"]
                   },
                   {
-                    role: "Technology Intern",
+                    role: "Software Developer Intern",
                     company: "Tech Innovations LLC",
                     period: "Jun 2023 - Aug 2023",
                     location: "Remote",
-                    description: "Enhanced Hitachi's Magshare with AI/Blockchain solutions, including a smart contract POC and a time-saving AI chatbot.",
+                    description: "Developed and maintained web applications using modern JavaScript frameworks.",
                     skills: ["React", "Node.js", "MongoDB", "REST APIs"]
                   },
                 ].map((experience, index) => (
