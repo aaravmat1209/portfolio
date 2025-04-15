@@ -22,8 +22,12 @@ export function generateStaticParams(): { slug: string }[] {
   }));
 }
 
-// Updated function signature to match Next.js App Router expectations
-export default function BlogPostPage({ params }: PageProps) {
+// Use the Next.js built-in types instead of custom types
+export default function BlogPostPage({ 
+  params 
+}: { 
+  params: { slug: string } 
+}) {
   const post = BLOG_POSTS.find((post) => post.slug === params.slug);
 
   if (!post) {
