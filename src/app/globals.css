@@ -41,10 +41,10 @@
 
 .light {
   /* Light mode uses reversed color assignments */
-  --background: #4d474744;
-  --secondary-background: #ffffff;
+  --background: #07070744;
+  --secondary-background: #575050;
   --foreground: var(--color-darkest);
-  --main-foreground: #ffffff;
+  --main-foreground: #1a1717;
   --main: var(--color-main);
   --accent: var(--color-accent);
   --border: var(--color-gray);

@@ -18,6 +18,7 @@ import twitch from '../public/icons/twitch.svg'
 import x from '../public/icons/x.svg'
 import youtube from '../public/icons/youtube.svg'
 import phone from '../public/icons/phone.svg'
+import email from '../public/icons/email.svg'
 
 type SocialMedia = (typeof websites)[number]
 
@@ -82,11 +83,11 @@ const LINKS: { [key in SocialMedia]: Link } = {
     link: 'https://www.instagram.com/boy_got_beats/',
     text: '@boy_got_beats',
   },
-  contact: {
-    title: 'Contact',
-    icon: phone,
-    link: 'tel:+16232908362',
-    text: '@cell_phone',
+  email: {
+    title: 'Email',
+    icon: email,
+    link: 'mailto:mataliaaarav@gmail.com',
+    text: 'Email me',
   },
 }
 
