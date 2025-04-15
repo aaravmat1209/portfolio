@@ -40,7 +40,7 @@ Inside `links.ts` inside `LINKS` object, every property represents a link displa
 github: {
   title: 'Github',
   icon: github,
-  link: 'https://github.com/johndoe',
+  link: 'https://github.com/aaravmat1209',
   text: '@johndoe',
 },
 ```

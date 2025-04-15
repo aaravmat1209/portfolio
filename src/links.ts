@@ -1,3 +1,4 @@
+import { Contact } from 'lucide-react'
 import behance from '../public/icons/behance.svg'
 import buymeacoffee from '../public/icons/buymeacoffee.svg'
 import dribbble from '../public/icons/dribbble.svg'
@@ -16,6 +17,7 @@ import tiktok from '../public/icons/tiktok.svg'
 import twitch from '../public/icons/twitch.svg'
 import x from '../public/icons/x.svg'
 import youtube from '../public/icons/youtube.svg'
+import phone from '../public/icons/phone.svg'
 
 type SocialMedia = (typeof websites)[number]
 
@@ -45,114 +47,46 @@ const websites = [
   'twitch',
   'x',
   'youtube',
+  'phone',
 ]
 
 const LINKS: { [key in SocialMedia]: Link } = {
-  behance: {
-    title: 'Behance',
-    icon: behance,
-    link: 'https://www.behance.net/johndoe',
-    text: '@johndoe',
-  },
-  buymeacoffee: {
-    title: 'Buy me a coffee',
-    icon: buymeacoffee,
-    link: 'https://buymeacoffee.com/johndoe',
-  },
-  dribbble: {
-    title: 'Dribbble',
-    icon: dribbble,
-    link: 'https://dribbble.com/johndoe',
-    text: '@johndoe',
-  },
-  figma: {
-    title: 'Figma',
-    icon: figma,
-    link: 'https://www.figma.com/@johndoe',
-    text: '@johndoe',
+  readcv: {
+    title: 'Read CV',
+    icon: readcv,
+    link: 'https://jade-binnie-84.tiiny.site',
+    text: '@aarav_matalia',
   },
   github: {
     title: 'Github',
     icon: github,
-    link: 'https://github.com/johndoe',
-    text: '@johndoe',
-  },
-  gumroad: {
-    title: 'Gumroad',
-    icon: gumroad,
-    link: 'https://johndoe.gumroad.com/',
-  },
-  instagram: {
-    title: 'Instagram',
-    icon: instagram,
-    link: 'https://www.instagram.com/johndoe/',
-    text: '@johndoe',
-  },
-  kofi: {
-    title: 'Ko-fi',
-    icon: kofi,
-    link: 'https://ko-fi.com/johndoe',
-    text: '@johndoe',
+    link: 'https://github.com/aaravmat1209',
+    text: '@aaravmat1209',
   },
   linkedin: {
     title: 'Linkedin',
     icon: linkedin,
-    link: 'https://www.linkedin.com/in/johndoe/',
-    text: '@johndoe',
+    link: 'https://www.linkedin.com/in/aarav-matalia/',
+    text: '@aarav-matalia',
   },
+
   medium: {
     title: 'Medium',
     icon: medium,
-    link: 'https://medium.com/@johndoe',
-    text: '@johndoe',
+    link: 'https://medium.com/@Aarav129',
+    text: '@Aarav129',
   },
-  patreon: {
-    title: 'Patreon',
-    icon: patreon,
-    link: 'https://www.patreon.com/johndoe',
-    text: '@johndoe',
+  instagram: {
+    title: 'Instagram',
+    icon: instagram,
+    link: 'https://www.instagram.com/boy_got_beats/',
+    text: '@boy_got_beats',
   },
-  producthunt: {
-    title: 'Product Hunt',
-    icon: producthunt,
-    link: 'https://www.producthunt.com/@johndoe',
-    text: '@johndoe',
-  },
-  readcv: {
-    title: 'Read CV',
-    icon: readcv,
-    link: 'https://read.cv/johndoe',
-    text: '@johndoe',
-  },
-  reddit: {
-    title: 'Reddit',
-    icon: reddit,
-    link: 'https://reddit.com/u/johndoe',
-    text: '/u/johndoe',
-  },
-  tiktok: {
-    title: 'Tiktok',
-    icon: tiktok,
-    link: 'https://www.tiktok.com/@johndoe',
-    text: '@johndoe',
-  },
-  twitch: {
-    title: 'Twitch',
-    icon: twitch,
-    link: 'https://www.twitch.tv/johndoe',
-    text: '@johndoe',
-  },
-  x: {
-    title: 'X',
-    icon: x,
-    link: 'https://twitter.com/johndoe',
-    text: 'johndoe',
-  },
-  youtube: {
-    title: 'Youtube',
-    icon: youtube,
-    link: 'https://www.youtube.com/@johndoe',
-    text: '@johndoe',
+  contact: {
+    title: 'Contact',
+    icon: phone,
+    link: 'tel:+16232908362',
+    text: '@cell_phone',
   },
 }
 

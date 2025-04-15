@@ -4,26 +4,51 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(93.46% 0.0305 255.11);
-  --secondary-background: oklch(100% 0 0);
-  --foreground: oklch(0% 0 0);
-  --main-foreground: oklch(0% 0 0);
-  --main: oklch(67.47% 0.1726 259.49);
-  --border: oklch(0% 0 0);
-  --ring: oklch(0% 0 0);
-  --overlay: oklch(0% 0 0 / 0.8);
-  --shadow: 4px -4px 0px 0px var(--border);
+  /* Color palette from the image */
+  --color-darkest: #0B0C10;  /* Almost black with blue tint */
+  --color-dark: #1F2833;     /* Dark navy blue */
+  --color-gray: #C5C6C7;     /* Light gray with slight blue tint */
+  --color-accent: #66FCF1;   /* Bright turquoise */
+  --color-main: #45A29E;     /* Teal/turquoise */
+  
+  /* Theme variables */
+  --background: var(--color-darkest);
+  --secondary-background: var(--color-dark);
+  --foreground: var(--color-gray);
+  --main-foreground: var(--color-darkest);
+  --main: var(--color-main);
+  --accent: var(--color-accent);
+  --border: var(--color-dark);
+  --ring: var(--color-accent);
+  --overlay: rgba(11, 12, 16, 0.7);
+  --shadow: 3px -3px 0px 0px var(--border);
+  --main-rgb: 69, 162, 158;    /* RGB equivalent for main color */
+  --accent-rgb: 102, 252, 241; /* RGB equivalent for accent color */
 }
 
 .dark {
-  --background: oklch(29.23% 0.0626 270.49);
-  --secondary-background: oklch(23.93% 0 0);
-  --foreground: oklch(92.49% 0 0);
-  --main-foreground: oklch(0% 0 0);
-  --main: oklch(67.47% 0.1726 259.49);
-  --border: oklch(0% 0 0);
-  --ring: oklch(100% 0 0);
-  --shadow: 4px -4px 0px 0px var(--border);
+  /* Dark mode uses same color palette but with different assignments */
+  --background: var(--color-darkest);
+  --secondary-background: var(--color-dark);
+  --foreground: var(--color-gray);
+  --main-foreground: var(--color-darkest);
+  --main: var(--color-main);
+  --accent: var(--color-accent);
+  --border: var(--color-dark);
+  --ring: var(--color-accent);
+  --shadow: 3px -3px 0px 0px var(--border);
+}
+
+.light {
+  /* Light mode uses reversed color assignments */
+  --background: #4d474744;
+  --secondary-background: #ffffff;
+  --foreground: var(--color-darkest);
+  --main-foreground: #ffffff;
+  --main: var(--color-main);
+  --accent: var(--color-accent);
+  --border: var(--color-gray);
+  --shadow: 3px -3px 0px 0px var(--border);
 }
 
 @theme inline {
@@ -35,6 +60,7 @@
   --color-border: var(--border);
   --color-overlay: var(--overlay);
   --color-ring: var(--ring);
+  --color-accent: var(--accent);
 
   --spacing-boxShadowX: 4px;
   --spacing-boxShadowY: -4px;
@@ -52,39 +78,298 @@ body {
 }
 
 body {
-  --sb-track-color: #ffffff;
-  --sb-thumb-color: #000000;
+  --sb-track-color: var(--color-darkest);
+  --sb-thumb-color: var(--color-main);
 }
 
 html.dark body,
 html.dark .scrollbar {
-  --sb-track-color: #1f1f1f;
-  --sb-thumb-color: #e6e6e6;
+  --sb-track-color: var(--color-darkest);
+  --sb-thumb-color: var(--color-main);
 }
 
 body::-webkit-scrollbar {
-  width: 20px;
+  width: 12px;
 }
 
 body::-webkit-scrollbar-track {
   background: var(--sb-track-color);
-  border-left: 4px solid #000;
 }
 
 body::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
-}
-
-body::-webkit-scrollbar-track {
-  border-left: 4px solid #000;
-}
-
-html.dark body::-webkit-scrollbar-thumb {
-  border-left: 4px solid #000;
+  border-radius: 6px;
 }
 
 @supports not selector(::-webkit-scrollbar) {
   body {
     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(20px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes bounceSlight {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px 2px rgba(var(--accent-rgb), 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px 5px rgba(var(--accent-rgb), 0.5);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.8s ease-out forwards;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.animate-bounce-subtle {
+  animation: bounceSlight 2s infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse 3s infinite;
+}
+
+.animate-glow {
+  animation: glow 3s infinite;
+}
+
+/* Advanced Animation Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px 0 rgba(var(--main-rgb), 0.3); }
+  50% { box-shadow: 0 0 20px 5px rgba(var(--main-rgb), 0.5); }
+}
+
+@keyframes accent-pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px 0 rgba(var(--accent-rgb), 0.3); }
+  50% { box-shadow: 0 0 20px 5px rgba(var(--accent-rgb), 0.5); }
+}
+
+@keyframes neon-border {
+  0%, 100% { 
+    box-shadow: 0 0 5px var(--accent),
+                0 0 10px var(--accent),
+                0 0 15px var(--accent),
+                0 0 20px var(--accent);
+  }
+  50% { 
+    box-shadow: 0 0 2px var(--accent),
+                0 0 5px var(--accent),
+                0 0 7px var(--accent),
+                0 0 10px var(--accent);
+  }
+}
+
+@keyframes text-shadow-pulse {
+  0%, 100% {
+    text-shadow: 0 0 4px rgba(var(--accent-rgb), 0.3),
+                 0 0 8px rgba(var(--accent-rgb), 0.3);
+  }
+  50% {
+    text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.5),
+                 0 0 16px rgba(var(--accent-rgb), 0.5);
+  }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  40% { transform: scale(1.1); }
+  60% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  0% { transform: translateX(50px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  0% { transform: translateX(-50px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes rotateIn {
+  0% { transform: rotate(-20deg) scale(0.8); opacity: 0; }
+  100% { transform: rotate(0) scale(1); opacity: 1; }
+}
+
+@keyframes expandWidth {
+  0% { width: 0; opacity: 0; }
+  100% { width: 100%; opacity: 1; }
+}
+
+/* Animation utility classes */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s infinite;
+}
+
+.animate-accent-pulse-glow {
+  animation: accent-pulse-glow 3s infinite;
+}
+
+.animate-neon {
+  animation: neon-border 3s infinite;
+}
+
+.animate-text-glow {
+  animation: text-shadow-pulse 3s infinite;
+}
+
+.animate-bounce-in {
+  animation: bounceIn 0.8s forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.7s forwards;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.7s forwards;
+}
+
+.animate-rotate-in {
+  animation: rotateIn 0.7s forwards;
+}
+
+.animate-expand-width {
+  animation: expandWidth 1.2s forwards;
+}
+
+/* Hover animations */
+.hover-float:hover {
+  animation: float 2s ease-in-out infinite;
+}
+
+.hover-pulse:hover {
+  animation: pulse-glow 1.5s infinite;
+}
+
+.hover-accent-pulse:hover {
+  animation: accent-pulse-glow 1.5s infinite;
+}
+
+.hover-neon:hover {
+  animation: neon-border 1.5s infinite;
+}
+
+.hover-text-glow:hover {
+  animation: text-shadow-pulse 1.5s infinite;
+}
+
+.hover-rotate:hover {
+  transform: rotate(3deg) scale(1.02);
+}
+
+.hover-expand:hover {
+  transform: scale(1.04);
+}
+
+/* Transition utilities */
+.transition-all-medium {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-transform-bounce {
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
 }
