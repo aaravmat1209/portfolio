@@ -5,6 +5,8 @@ import { BLOG_POSTS } from '../blog-posts'
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { getFeaturedProjects } from '../../projects-data';
+
 
 export default function ContentPage() {
   const [contentVisible, setContentVisible] = useState(false);
@@ -216,27 +218,27 @@ export default function ContentPage() {
               <div className="space-y-8">
                 {[
                   {
-                    role: "Software Engineer Intern",
-                    company: "Amazon Web Services",
-                    period: "May 2024 - Aug 2024",
-                    location: "Seattle, WA",
-                    description: "Working with the AWS Elastic Compute Cloud (EC2) team to enhance cloud infrastructure and services.",
+                    role: "Cloud Developer",
+                    company: "AWS Cloud Innovation Center",
+                    period: "Apr 2025 - Present",
+                    location: "Scottsdale, AZ",
+                    description: "Building scalable AI/ML solutions on AWS for public sector use cases using cloud infrastructure.",
                     skills: ["AWS", "Cloud Infrastructure", "Backend Development"]
                   },
                   {
                     role: "Machine Learning Intern",
-                    company: "ASU AI Advancement Center",
-                    period: "Jan 2024 - Present",
+                    company: "ChargeZone",
+                    period: "Aug 2024 - Dec 2024",
                     location: "Tempe, AZ",
-                    description: "Developing deep learning models for natural language processing and computer vision applications.",
-                    skills: ["PyTorch", "NLP", "Computer Vision", "Large Language Models"]
+                    description: "Developed EV charging data pipeline & analysis to drive insights and business strategy",
+                    skills: ["Python", "ML Modelling", "Data Preprocessing", "Data pipelines"]
                   },
                   {
-                    role: "Software Developer Intern",
-                    company: "Tech Innovations LLC",
-                    period: "Jun 2023 - Aug 2023",
+                    role: "Technology Intern",
+                    company: "Hitachi Energy",
+                    period: "Jun 2024 - Aug 2024",
                     location: "Remote",
-                    description: "Developed and maintained web applications using modern JavaScript frameworks.",
+                    description: "Enhanced Hitachi's Magshare with AI/Blockchain solutions, including a smart contract POC and a time-saving AI chatbot",
                     skills: ["React", "Node.js", "MongoDB", "REST APIs"]
                   },
                 ].map((experience, index) => (
@@ -285,70 +287,61 @@ export default function ContentPage() {
 
             {/* Projects Section with Animated Cards */}
             <div ref={projectsRef} className="mt-16 w-full animate-slide-right" style={{ animationDelay: "300ms" }}>
-              <h2 className="font-heading text-2xl mb-6 sm:text-3xl text-main animate-text-glow">
-                Featured Projects
-              </h2>
-              <div className="grid grid-cols-1 gap-8">
-                {[
-                  {
-                    title: "Renvue.ai (Hackathon Winner)",
-                    description: "An AI powered marketplace to match investors with startups.",
-                    link: "https://renvue.vercel.app/",
-                    tech: ["Next.js", "React", "Node.js", "Perplexity AI agent", "HuggingFace Transformers"]
-                  },
-                  {
-                    title: "Gradify.io (Hackathon Winner)",
-                    description: "An Gemini based AI autograder that can evaluate multiple assignments based on multimodal inputs and provide feedback.",
-                    link: "https://gradifyy.vercel.app/",
-                    tech: ["Gemini API", "TypeScript", "React", "OpenAI API"]
-                  },
-                  {
-                    title: "FinScrape",
-                    description: "A web scraping Chrome extension that extract financial data from various sources using ensemble machine learning models.",
-                    link: "https://github.com/aaravmat1209/FinScrape",
-                    tech: ["Yahoo Finance API", "LSTM", "RNNs", "Flask", "JSON"]
-                  }
-                ].map((project, index) => (
-                  <div 
-                    key={index} 
-                    className="border-main shadow-shadow bg-secondary-background rounded-base border-2 p-6 
-                             hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all-medium 
-                             animate-slide-right hover-expand group hover:border-accent"
-                    style={{ animationDelay: `${500 + index * 150}ms` }}
-                  >
-                    <h3 className="font-heading text-xl group-hover:text-accent transition-all">
-                      {project.title}
-                    </h3>
-                    <p className="mt-2 text-sm group-hover:opacity-90 transition-all">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      {project.tech.map((tech, techIndex) => (
-                        <span 
-                          key={tech} 
-                          className="bg-main text-main-foreground text-xs px-2 py-1 rounded 
-                                  transition-transform-bounce group-hover:scale-105 group-hover:bg-accent"
-                          style={{ transitionDelay: `${techIndex * 50}ms` }}
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                    {project.link && (
-                      <a 
-                        href={project.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="mt-4 inline-block text-sm font-medium text-main hover:text-accent
-                                 transition-all opacity-0 group-hover:opacity-100"
-                      >
-                        View Project →
-                      </a>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
+  <div className="flex justify-between items-center mb-6">
+    <h2 className="font-heading text-2xl mb-0 sm:text-3xl text-main animate-text-glow">
+      Featured Projects
+    </h2>
+    <Link
+      href="/projects" 
+      className="border-main bg-secondary-background text-foreground hover:bg-accent hover:border-accent
+               hover:text-main-foreground rounded-base border-2 px-4 py-2 text-sm 
+               transition-all-medium hover-float"
+    >
+      View all projects →
+    </Link>
+  </div>
+  <div className="grid grid-cols-1 gap-8">
+    {getFeaturedProjects().map((project, index) => (
+      <div 
+        key={project.id} 
+        className="border-main shadow-shadow bg-secondary-background rounded-base border-2 p-6 
+                 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all-medium 
+                 animate-slide-right hover-expand group hover:border-accent"
+        style={{ animationDelay: `${500 + index * 150}ms` }}
+      >
+        <h3 className="font-heading text-xl group-hover:text-accent transition-all">
+          {project.title}
+        </h3>
+        <p className="mt-2 text-sm group-hover:opacity-90 transition-all">
+          {project.description}
+        </p>
+        <div className="flex flex-wrap gap-2 mt-4">
+          {project.tech.map((tech, techIndex) => (
+            <span 
+              key={tech} 
+              className="bg-main text-main-foreground text-xs px-2 py-1 rounded 
+                      transition-transform-bounce group-hover:scale-105 group-hover:bg-accent"
+              style={{ transitionDelay: `${techIndex * 50}ms` }}
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+        {project.link && (
+          <a 
+            href={project.link} 
+            target={project.link.startsWith('http') ? "_blank" : "_self"}
+            rel="noopener noreferrer"
+            className="mt-4 inline-block text-sm font-medium text-main hover:text-accent
+                     transition-all opacity-0 group-hover:opacity-100"
+          >
+            View Project →
+          </a>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
 
             {/* Blog Posts Section with Animated Cards */}
             <div ref={blogRef} className="mt-16 w-full animate-slide-right" style={{ animationDelay: "500ms" }}>

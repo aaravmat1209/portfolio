@@ -1,6 +1,8 @@
 import { BLOG_POSTS } from '../../blog-posts';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import React from 'react';
+import ReactMarkdown from 'react-markdown'; // Install this: npm install react-markdown
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({
@@ -31,18 +33,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <p className="text-sm mt-2 opacity-70">{post.date}</p>
         
         <div className="mt-8 prose prose-green dark:prose-invert max-w-none">
-          <h2>Introduction</h2>
-          <p>This is a placeholder for the full blog post content. In a real implementation, you would have complete content here.</p>
-          
-          <h2>Main Points</h2>
-          <ul>
-            <li>Key takeaway one</li>
-            <li>Important concept two</li>
-            <li>Critical insight three</li>
-          </ul>
-          
-          <h2>Conclusion</h2>
-          <p>Final thoughts and closing remarks for this blog post.</p>
+          <ReactMarkdown>{post.content}</ReactMarkdown>
         </div>
       </article>
     </div>
