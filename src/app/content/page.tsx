@@ -138,10 +138,10 @@ export default function ContentPage() {
                 style={{ animationDelay: "600ms" }}>
               <p className="font-base text-base">
                 I am a junior Computer Science student at Arizona State University with a passion for developing cloud-native and data-driven solutions. With a focused background in backend development and data analysis, I specialize in architecting data systems and cloud infrastructure that power intuitive applications. My expertise lies in 
-                implementing modern technologies to create scalable solutions that deliver exceptional user experiences. I'm also really into hackathons! and of course winning them!!!!!
+                implementing modern technologies to create scalable solutions that deliver exceptional user experiences. I&#39;m also really into hackathons! and of course winning them!!!!!
               </p>
               <p className="font-base text-base mt-4">
-                When I'm not coding, you can find me learning about cars, playing badminton, or listening to sick drum covers!
+                When I&#39;m not coding, you can find me learning about cars, playing badminton, or listening to sick drum covers!
               </p>
             </div>
           </div>
