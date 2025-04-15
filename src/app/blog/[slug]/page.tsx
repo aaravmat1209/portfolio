@@ -9,18 +9,21 @@ type Params = {
   slug: string;
 };
 
-type Props = {
+// Updated Props interface to match Next.js App Router expectations
+interface PageProps {
   params: Params;
-};
+  searchParams: { [key: string]: string | string[] | undefined };
+}
 
 // Generate static paths for each blog post
-export function generateStaticParams(): Params[] {
+export function generateStaticParams(): { slug: string }[] {
   return BLOG_POSTS.map((post) => ({
     slug: post.slug,
   }));
 }
 
-export default function BlogPostPage({ params }: Props) {
+// Updated function signature to match Next.js App Router expectations
+export default function BlogPostPage({ params }: PageProps) {
   const post = BLOG_POSTS.find((post) => post.slug === params.slug);
   
   if (!post) {
