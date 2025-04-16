@@ -18,7 +18,7 @@ import twitch from '../public/icons/twitch.svg'
 import x from '../public/icons/x.svg'
 import youtube from '../public/icons/youtube.svg'
 import phone from '../public/icons/phone.svg'
-import email from '../public/icons/email.svg'
+import email from '../public/icons/icons8-email-50.png'
 
 type SocialMedia = (typeof websites)[number]
 

@@ -375,3 +375,35 @@ body::-webkit-scrollbar-thumb {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;             /* Chrome, Safari and Opera */
 }
+
+
+
+/* Add these new animation keyframes to your existing CSS */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes cloud {
+  0% { transform: translateX(110%); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Add these new utility classes */
+.animate-twinkle {
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+.animate-cloud {
+  animation: cloud 120s linear infinite;
+}
+
+/* For longer transitions */
+.duration-3000 {
+  transition-duration: 3000ms;
+}
