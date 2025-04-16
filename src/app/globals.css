@@ -39,17 +39,7 @@
   --shadow: 3px -3px 0px 0px var(--border);
 }
 
-.light {
-  /* Light mode uses reversed color assignments */
-  --background: #07070744;
-  --secondary-background: #575050;
-  --foreground: var(--color-darkest);
-  --main-foreground: #1a1717;
-  --main: var(--color-main);
-  --accent: var(--color-accent);
-  --border: var(--color-gray);
-  --shadow: 3px -3px 0px 0px var(--border);
-}
+/* Light mode section removed */
 
 @theme inline {
   --color-main: var(--main);
@@ -71,6 +61,8 @@
   --font-weight-base: 400;
   --font-weight-heading: 600;
 }
+
+/* ...rest of the CSS remains unchanged... */
 
 body {
   min-height: 100dvh;
