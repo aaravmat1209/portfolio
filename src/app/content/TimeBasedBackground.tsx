@@ -317,9 +317,6 @@ export default function TimeBasedBackground({
         <div className={`absolute inset-0 ${timeOfDay === 'night' ? 'bg-background/70' : 'bg-background/30'}`}></div>
 
         {/* Mode indicator */}
-        <div className={`pointer-events-auto absolute bottom-4 left-20 ${getControlsBgColor()} backdrop-blur-sm ${getControlsTextColor()} px-4 py-2 rounded-lg text-sm z-10`}>
-          Current Mode: <span className="font-medium">Code Time! :D</span>
-        </div>
 
         {/* Time controls */}
         {showControls && (
