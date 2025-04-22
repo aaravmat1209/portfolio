@@ -15,7 +15,7 @@ export const PROJECTS = [
     title: "ChargeZone Pipeline",
     description: "An ML OPS pipeline that ingests, processes, and stores EV charging data from transformed excel files. The pipeline uses a PCA and KMeans clustering models to generate insights and predictions.",
     image: "/projects/chargezone.png",
-    link: "https://github.com/aaravmat1209/chargezone-pipeline",
+    link: "https://chargezone-pipeline.netlify.app/",
     github: "https://github.com/aaravmat1209/chargezone-pipeline",
     featured: true,
     tech: ["React.js", "Data Analaytics", "K-Means Clustering", "PCA", "MLOPS", "Python Flask", "Data Visualization"]
