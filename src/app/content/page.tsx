@@ -44,9 +44,9 @@ function ContentPageInner() {
         setTimeout(() => {
           const sectionRef =
             section === 'about' ? aboutRef :
-            section === 'experience' ? experienceRef :
-            section === 'projects' ? projectsRef :
-            section === 'skills' ? skillsRef : blogRef;
+              section === 'experience' ? experienceRef :
+                section === 'projects' ? projectsRef :
+                  section === 'skills' ? skillsRef : blogRef;
           sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 800);
       }, 300);
@@ -120,9 +120,9 @@ function ContentPageInner() {
                 onClick={() => {
                   const ref =
                     section === "About" ? aboutRef :
-                    section === "Experience" ? experienceRef :
-                    section === "Projects" ? projectsRef :
-                    section === "Skills" ? skillsRef : blogRef;
+                      section === "Experience" ? experienceRef :
+                        section === "Projects" ? projectsRef :
+                          section === "Skills" ? skillsRef : blogRef;
                   scrollToSection(ref, section);
                 }}
                 className={`transition-all text-xs sm:text-sm px-2 sm:px-3 mx-1 whitespace-nowrap ${activeSection === section ? colors.accent : `${colors.text} hover:${colors.accent}`}`}
@@ -166,7 +166,7 @@ function ContentPageInner() {
             </h2>
             <div className="animate-expand-width overflow-hidden" style={{ animationDelay: "600ms" }}>
               <p className="font-base text-base">
-                I am a junior Computer Science student at Arizona State University with a passion for developing cloud-native and data-driven solutions. With a focused background in backend development and data analysis, I specialize in architecting data systems and cloud infrastructure that power intuitive applications. My expertise lies in implementing modern technologies to create scalable solutions that deliver exceptional user experiences. I&#39;m also really into hackathons! and of course winning them!!!!!
+                I am a junior Computer Science student at Arizona State University with a passion for developing cloud-native and data-driven solutions. With a focused background in backend development and data analysis, I specialize in architecting data systems and cloud infrastructure that power intuitive applications. My expertise lies in implementing modern technologies to create scalable solutions that deliver exceptional user experiences. I&#39;m also really into hackathons! and love participating!!!!! My team and I have won 3 till now! it&#39;s an amazing feeling.
               </p>
               <p className="font-base text-base mt-4">
                 When I&#39;m not coding, you can find me learning about cars, playing badminton, or listening to sick drum covers!
