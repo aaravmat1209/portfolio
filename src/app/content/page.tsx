@@ -164,7 +164,14 @@ function ContentPageInner() {
             <h2 className={`font-heading text-2xl mb-4 sm:text-3xl animate-slide-right ${colors.headings}`} style={{ animationDelay: "400ms" }}>
               About Me
             </h2>
-            <div className="animate-expand-width overflow-hidden" style={{ animationDelay: "600ms" }}>
+            <div
+              className={`
+      ${colors.border} shadow-shadow ${colors.secondary} 
+      rounded-base border-2 p-6 transition-all-medium animate-expand-width
+      hover:translate-x-1 hover:translate-y-1 hover:border-[var(--color-accent)]
+    `}
+              style={{ animationDelay: "600ms" }}
+            >
               <p className="font-base text-base">
                 I am a junior Computer Science student at Arizona State University with a passion for developing cloud-native and data-driven solutions. With a focused background in backend development and data analysis, I specialize in architecting data systems and cloud infrastructure that power intuitive applications. My expertise lies in implementing modern technologies to create scalable solutions that deliver exceptional user experiences. I&#39;m also really into hackathons! and love participating!!!!! My team and I have won 3 till now! it&#39;s an amazing feeling.
               </p>
@@ -179,21 +186,29 @@ function ContentPageInner() {
             <h2 className={`font-heading text-2xl mb-4 sm:text-3xl ${colors.headings} animate-text-glow`}>
               Skills
             </h2>
-            <div className="flex flex-wrap gap-2">
-              {['Python', 'AWS', 'Flask', 'Tensorflow', 'Keras', 'React', 'Node.js', 'TypeScript', 'MongoDB', 'Cloud Development', 'API Development'].map((skill, index) => (
-                <span
-                  key={skill}
-                  className={`
-                    ${colors.border} ${colors.secondary} 
-                    rounded-base border px-3 py-1 text-xs
-                    hover:bg-[var(--color-accent)] hover:border-[var(--color-accent)]
-                    hover:${colors.headings} transition-all-medium animate-fade-in
-                  `}
-                  style={{ animationDelay: `${800 + index * 50}ms` }}
-                >
-                  {skill}
-                </span>
-              ))}
+            <div
+              className={`
+      ${colors.border} shadow-shadow ${colors.secondary} 
+      rounded-base border-2 p-6 transition-all-medium
+      hover:translate-x-1 hover:translate-y-1 hover:border-[var(--color-accent)]
+    `}
+            >
+              <div className="flex flex-wrap gap-2">
+                {['Python', 'AWS', 'Flask', 'Tensorflow', 'Keras', 'React', 'Node.js', 'TypeScript', 'MongoDB', 'Cloud Development', 'API Development'].map((skill, index) => (
+                  <span
+                    key={skill}
+                    className={`
+            ${colors.background} text-[#66FCF1]
+            rounded-base px-3 py-1 text-xs
+            hover:bg-[var(--color-accent)] hover:text-black
+            transition-all-medium animate-fade-in
+          `}
+                    style={{ animationDelay: `${800 + index * 50}ms` }}
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -254,11 +269,11 @@ function ContentPageInner() {
                   <div
                     key={index}
                     className={`
-                      ${colors.border} shadow-shadow ${colors.secondary} 
-                      rounded-base border-2 p-6 hover:translate-x-1 hover:translate-y-1 
-                      hover:shadow-none transition-all-medium animate-slide-right 
-                      hover-expand group hover:border-[var(--color-accent)]
-                    `}
+          ${colors.border} shadow-shadow ${colors.secondary} 
+          rounded-base border-2 p-6 hover:translate-x-1 hover:translate-y-1 
+          hover:shadow-none transition-all-medium animate-slide-right 
+          hover-expand group hover:border-[var(--color-accent)]
+        `}
                     style={{ animationDelay: `${500 + index * 150}ms` }}
                   >
                     <div className="flex flex-wrap justify-between items-start mb-2">
@@ -282,10 +297,12 @@ function ContentPageInner() {
                         <span
                           key={skill}
                           className={`
-                            ${colors.background} text-white text-xs px-2 py-1 rounded 
-                            transition-transform-bounce group-hover:scale-105 group-hover:bg-[var(--color-accent)]
-                          `}
-                          style={{ transitionDelay: `${skillIndex * 50}ms` }}
+                ${colors.background} text-[#66FCF1]
+                rounded-base px-3 py-1 text-xs
+                hover:bg-[var(--color-accent)] hover:text-black
+                transition-all-medium animate-fade-in
+              `}
+                          style={{ animationDelay: `${800 + skillIndex * 50}ms` }}
                         >
                           {skill}
                         </span>
@@ -295,7 +312,6 @@ function ContentPageInner() {
                 ))}
               </div>
             </div>
-
             {/* Projects Section */}
             <div ref={projectsRef} className="mt-16 w-full animate-slide-right" style={{ animationDelay: "300ms" }}>
               <div className="flex justify-between items-center mb-6">
@@ -305,11 +321,11 @@ function ContentPageInner() {
                 <Link
                   href="/projects"
                   className={`
-                    ${colors.border} ${colors.secondary} ${colors.text} 
-                    hover:bg-[var(--color-accent)] hover:border-[var(--color-accent)]
-                    hover:${colors.headings} rounded-base border-2 px-4 py-2 text-sm 
-                    transition-all-medium hover-float
-                  `}
+        ${colors.border} ${colors.secondary} ${colors.text} 
+        hover:bg-[var(--color-accent)] hover:border-[var(--color-accent)]
+        hover:${colors.headings} rounded-base border-2 px-4 py-2 text-sm 
+        transition-all-medium hover-float
+      `}
                 >
                   View all projects →
                 </Link>
@@ -319,11 +335,11 @@ function ContentPageInner() {
                   <div
                     key={project.id}
                     className={`
-                      ${colors.border} shadow-shadow ${colors.secondary} 
-                      rounded-base border-2 p-6 hover:translate-x-1 hover:translate-y-1 
-                      hover:shadow-none transition-all-medium animate-slide-right 
-                      hover-expand group hover:border-[var(--color-accent)]
-                    `}
+          ${colors.border} shadow-shadow ${colors.secondary} 
+          rounded-base border-2 p-6 hover:translate-x-1 hover:translate-y-1 
+          hover:shadow-none transition-all-medium animate-slide-right 
+          hover-expand group hover:border-[var(--color-accent)]
+        `}
                     style={{ animationDelay: `${500 + index * 150}ms` }}
                   >
                     <h3 className={`font-heading text-xl transition-all group-hover:${colors.accent}`}>
@@ -337,10 +353,12 @@ function ContentPageInner() {
                         <span
                           key={tech}
                           className={`
-                            ${colors.background} text-white text-xs px-2 py-1 rounded 
-                            transition-transform-bounce group-hover:scale-105 group-hover:bg-[var(--color-accent)]
-                          `}
-                          style={{ transitionDelay: `${techIndex * 50}ms` }}
+                ${colors.background} text-[#66FCF1]
+                rounded-base px-3 py-1 text-xs
+                hover:bg-[var(--color-accent)] hover:text-black
+                transition-all-medium animate-fade-in
+              `}
+                          style={{ animationDelay: `${800 + techIndex * 50}ms` }}
                         >
                           {tech}
                         </span>
