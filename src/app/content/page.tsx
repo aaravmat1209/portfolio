@@ -161,13 +161,13 @@ function ContentPageInner() {
 
           {/* About Me Section */}
           <div className="mt-8 w-full">
-            <h2 className={`font-heading text-2xl mb-4 sm:text-3xl animate-slide-right ${colors.headings}`} style={{ animationDelay: "400ms" }}>
+            <h2 className={`font-heading text-2xl mb-4 sm:text-3xl ${colors.headings}`} style={{ animationDelay: "400ms" }}>
               About Me
             </h2>
             <div
               className={`
       ${colors.border} shadow-shadow ${colors.secondary} 
-      rounded-base border-2 p-6 transition-all-medium animate-expand-width
+      rounded-base border-2 p-6 transition-all-medium
       hover:translate-x-1 hover:translate-y-1 hover:border-[var(--color-accent)]
     `}
               style={{ animationDelay: "600ms" }}
