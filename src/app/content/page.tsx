@@ -11,7 +11,10 @@ import SplitText from '@/components/SplitText';
 import GradientText from '@/components/GradientText';
 import Dock from '@/components/Dock';
 import ChromaGrid, { ChromaItem } from '@/components/ChromaGrid';
-import { Home, User, Briefcase, Code, BookOpen, Github, Linkedin, Mail } from 'lucide-react';
+import ExperienceStack from '@/components/ExperienceStack';
+import CardSwap, { Card } from '@/components/CardSwap';
+import BlogCardSwap, { BlogCardSwapRef } from '@/components/BlogCardSwap';
+import { Home, User, Briefcase, Code, BookOpen, Github, Linkedin, Mail, ChevronLeft, ChevronRight } from 'lucide-react';
 
 type Experience = {
     role: string;
@@ -22,9 +25,11 @@ type Experience = {
     skills: string[];
 };
 
+
 function ContentPageInner() {
     const [mounted, setMounted] = useState(false);
     const [activeSection, setActiveSection] = useState<string>('About');
+    const [currentCardOrder, setCurrentCardOrder] = useState<any[]>([]);
     const searchParams = useSearchParams();
 
     const aboutRef = useRef<HTMLDivElement | null>(null);
@@ -32,6 +37,7 @@ function ContentPageInner() {
     const projectsRef = useRef<HTMLDivElement | null>(null);
     const skillsRef = useRef<HTMLDivElement | null>(null);
     const blogRef = useRef<HTMLDivElement | null>(null);
+    const blogCardSwapRef = useRef<BlogCardSwapRef>(null);
 
     useEffect(() => {
         setMounted(true);
@@ -291,50 +297,62 @@ function ContentPageInner() {
                     </div>
 
                     {/* Experience Section */}
-                    <div ref={experienceRef} className="max-w-4xl mx-auto mb-20">
-                        <SplitText
-                            text="Professional Experience"
-                            tag="h2"
-                            className="text-3xl md:text-4xl font-bold text-[#66FCF1] mb-8"
-                            delay={30}
-                            duration={0.5}
-                            splitType="words"
-                        />
-                        <div className="space-y-6">
-                            {experiences.map((experience, index) => (
-                                <div
-                                    key={index}
-                                    className="bg-[#1F2833]/80 backdrop-blur-sm border-2 border-[#1F2833] rounded-xl p-6 md:p-8
-                         hover:border-[#66FCF1] transition-all duration-300 hover:shadow-lg hover:shadow-[#66FCF1]/20
-                         group"
-                                >
-                                    <div className="flex flex-wrap justify-between items-start mb-3">
-                                        <h3 className="text-xl md:text-2xl font-bold text-[#C5C6C7] group-hover:text-[#66FCF1] transition-colors">
-                                            {experience.role}
-                                        </h3>
-                                        <span className="text-sm text-[#66FCF1] bg-[#0B0C10] px-3 py-1 rounded-lg font-medium">
-                                            {experience.period}
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-wrap items-center gap-2 mb-4 text-[#C5C6C7]">
-                                        <span className="font-semibold">{experience.company}</span>
-                                        <span>•</span>
-                                        <span className="text-sm opacity-70">{experience.location}</span>
-                                    </div>
-                                    <p className="text-[#C5C6C7] mb-4 leading-relaxed">{experience.description}</p>
-                                    <div className="flex flex-wrap gap-2">
-                                        {experience.skills.map((skill) => (
-                                            <span
-                                                key={skill}
-                                                className="bg-[#0B0C10] text-[#66FCF1] px-3 py-1 rounded-lg text-xs font-medium
-                               hover:bg-[#66FCF1] hover:text-[#0B0C10] transition-all duration-300"
-                                            >
-                                                {skill}
-                                            </span>
-                                        ))}
-                                    </div>
+                    <div ref={experienceRef} className="w-full mx-auto mb-20">
+                        <div className="max-w-4xl mx-auto mb-4">
+                            <SplitText
+                                text="Professional Experience"
+                                tag="h2"
+                                className="text-3xl md:text-4xl font-bold text-[#66FCF1] text-center"
+                                delay={30}
+                                duration={0.5}
+                                splitType="words"
+                            />
+                        </div>
+
+                        <div className="flex justify-center items-center gap-12 min-h-[600px]">
+                            {/* Position Tracker */}
+                            <div className="flex flex-col gap-4">
+                                <div className="text-[#66FCF1] text-lg font-bold mb-3">
+                                    Experiences
                                 </div>
-                            ))}
+                                {experiences.map((exp, index) => {
+                                    // Find the top card (last in currentCardOrder array)
+                                    const topCard = currentCardOrder.length > 0
+                                        ? currentCardOrder[currentCardOrder.length - 1]
+                                        : experiences[0];
+
+                                    // Check if this experience is the top card by comparing role
+                                    const isTopCard = exp.role === topCard.role;
+
+                                    return (
+                                        <div
+                                            key={index}
+                                            className="flex items-center gap-4 group"
+                                        >
+                                            <div className={`w-3 h-3 rounded-full transition-all duration-300 ${isTopCard
+                                                ? 'bg-[#66FCF1] ring-4 ring-[#66FCF1]/30 ring-offset-2 ring-offset-[#0B0C10]'
+                                                : 'bg-[#1F2833] group-hover:bg-[#66FCF1]/50'
+                                                }`} />
+                                            <div className={`text-base transition-all duration-300 min-w-[180px] ${isTopCard
+                                                ? 'text-[#66FCF1] font-bold'
+                                                : 'text-[#C5C6C7] opacity-60'
+                                                }`}>
+                                                {exp.role}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+
+                            {/* Card Stack */}
+                            <ExperienceStack
+                                experiences={experiences}
+                                cardDimensions={{ width: 650, height: 450 }}
+                                sensitivity={150}
+                                sendToBackOnClick={true}
+                                randomRotation={false}
+                                onOrderChange={(cards) => setCurrentCardOrder(cards)}
+                            />
                         </div>
                     </div>
 
@@ -366,52 +384,56 @@ function ContentPageInner() {
                     </div>
 
                     {/* Blog Section */}
-                    <div ref={blogRef} className="max-w-4xl mx-auto mb-20">
-                        <div className="flex justify-between items-center mb-8">
-                            <SplitText
-                                text="Recent Thoughts"
-                                tag="h2"
-                                className="text-3xl md:text-4xl font-bold text-[#66FCF1]"
-                                delay={30}
-                                duration={0.5}
-                                splitType="words"
-                            />
-                            <Link
-                                href="/blog"
-                                className="text-[#66FCF1] hover:text-[#45A29E] transition-colors text-sm font-medium"
-                            >
-                                View all →
-                            </Link>
+                    <div ref={blogRef} className="max-w-6xl mx-auto mb-20">
+                        <div className="mb-8">
+                            <div className="flex items-center justify-between mb-3">
+                                <SplitText
+                                    text="Recent Thoughts"
+                                    tag="h2"
+                                    className="text-3xl md:text-4xl font-bold text-[#66FCF1]"
+                                    delay={30}
+                                    duration={0.5}
+                                    splitType="words"
+                                />
+                                {/* Navigation Arrows - Inline with title */}
+                                <div className="flex items-center gap-4">
+                                    <button
+                                        onClick={() => blogCardSwapRef.current?.prev()}
+                                        className="w-12 h-12 rounded-full bg-[#1F2833] border-2 border-[#66FCF1]/30 
+                                        text-[#66FCF1] hover:bg-[#66FCF1] hover:text-[#0B0C10] 
+                                        transition-all duration-300 text-xl font-bold
+                                        hover:scale-110 hover:border-[#66FCF1] hover:shadow-lg hover:shadow-[#66FCF1]/50
+                                        flex items-center justify-center"
+                                        aria-label="Previous blog post"
+                                    >
+                                        <ChevronLeft size={24} strokeWidth={3} />
+                                    </button>
+                                    <button
+                                        onClick={() => blogCardSwapRef.current?.next()}
+                                        className="w-12 h-12 rounded-full bg-[#1F2833] border-2 border-[#66FCF1]/30 
+                                        text-[#66FCF1] hover:bg-[#66FCF1] hover:text-[#0B0C10] 
+                                        transition-all duration-300 text-xl font-bold
+                                        hover:scale-110 hover:border-[#66FCF1] hover:shadow-lg hover:shadow-[#66FCF1]/50
+                                        flex items-center justify-center"
+                                        aria-label="Next blog post"
+                                    >
+                                        <ChevronRight size={24} strokeWidth={3} />
+                                    </button>
+                                </div>
+                            </div>
+                            <p className="text-[#C5C6C7] text-lg">
+                                Exploring ideas in tech, development, and innovation
+                            </p>
                         </div>
-                        <div className="space-y-6">
-                            {BLOG_POSTS.map((post, index) => (
-                                <Link
-                                    key={post.id}
-                                    href={`/blog/${post.slug}`}
-                                    className="block bg-[#1F2833]/80 backdrop-blur-sm border-2 border-[#1F2833] rounded-xl p-6 md:p-8
-                         hover:border-[#66FCF1] transition-all duration-300 hover:shadow-lg hover:shadow-[#66FCF1]/20
-                         group"
-                                >
-                                    <h3 className="text-xl md:text-2xl font-bold text-[#C5C6C7] group-hover:text-[#66FCF1] transition-colors mb-2">
-                                        {post.title}
-                                    </h3>
-                                    <p className="text-sm text-[#66FCF1] mb-3">{post.date}</p>
-                                    <p className="text-[#C5C6C7] leading-relaxed mb-3">{post.excerpt}</p>
-                                    <span className="text-[#66FCF1] text-sm font-medium">Read more →</span>
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
 
-                    {/* Back to Home Button */}
-                    <div className="max-w-4xl mx-auto text-center">
-                        <Link
-                            href="/"
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-[#66FCF1] text-[#0B0C10] rounded-lg
-                     font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#66FCF1]/50"
-                        >
-                            <span>←</span> Return to Home
-                        </Link>
+                        <div className="min-h-[500px] flex items-center justify-end">
+                            <BlogCardSwap
+                                ref={blogCardSwapRef}
+                                posts={BLOG_POSTS}
+                                width={650}
+                                height={400}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
