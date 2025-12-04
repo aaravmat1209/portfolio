@@ -287,4 +287,4 @@ const DotGrid: React.FC<DotGridProps> = ({
   );
 };
 
-export default DotGrid;
+export default React.memo(DotGrid);

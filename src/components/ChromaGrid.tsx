@@ -227,4 +227,4 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
   );
 };
 
-export default ChromaGrid;
+export default React.memo(ChromaGrid);

@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState, useEffect, useRef } from 'react';
+import { Suspense, useState, useEffect, useRef, useMemo, useCallback, memo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import LINKS from '@/links';
@@ -24,6 +24,45 @@ type Experience = {
     description: string;
     skills: string[];
 };
+
+// Move static data outside component to prevent recreation on every render
+const EXPERIENCES: Experience[] = [
+    {
+        role: "Cloud Developer",
+        company: "AWS Cloud Innovation Center",
+        period: "Apr 2025 - Present",
+        location: "Scottsdale, AZ",
+        description: "Building scalable AI/ML solutions on AWS for public sector use cases using cloud infrastructure.",
+        skills: ["AWS", "Cloud Infrastructure", "Backend Development"]
+    },
+    {
+        role: "Machine Learning Intern",
+        company: "ChargeZone",
+        period: "Aug 2024 - Dec 2024",
+        location: "Tempe, AZ",
+        description: "Developed EV charging data pipeline & analysis to drive insights and business strategy",
+        skills: ["Python", "ML Modelling", "Data Preprocessing", "Data pipelines"]
+    },
+    {
+        role: "Technology Intern",
+        company: "Hitachi Energy",
+        period: "Jun 2024 - Aug 2024",
+        location: "Remote",
+        description: "Enhanced Hitachi's Magshare with AI/Blockchain solutions, including a smart contract POC and a time-saving AI chatbot",
+        skills: ["React", "Node.js", "MongoDB", "REST APIs"]
+    },
+];
+
+const PROJECT_COLORS = [
+    { border: '#4F46E5', gradient: 'linear-gradient(145deg, #4F46E5, #000)' },
+    { border: '#10B981', gradient: 'linear-gradient(210deg, #10B981, #000)' },
+    { border: '#F59E0B', gradient: 'linear-gradient(165deg, #F59E0B, #000)' },
+    { border: '#EF4444', gradient: 'linear-gradient(195deg, #EF4444, #000)' },
+    { border: '#8B5CF6', gradient: 'linear-gradient(225deg, #8B5CF6, #000)' },
+    { border: '#06B6D4', gradient: 'linear-gradient(135deg, #06B6D4, #000)' },
+    { border: '#EC4899', gradient: 'linear-gradient(180deg, #EC4899, #000)' },
+    { border: '#14B8A6', gradient: 'linear-gradient(150deg, #14B8A6, #000)' },
+];
 
 
 function ContentPageInner() {
@@ -56,7 +95,7 @@ function ContentPageInner() {
         }
     }, [searchParams]);
 
-    const scrollToSection = (
+    const scrollToSection = useCallback((
         sectionRef: React.RefObject<HTMLDivElement | null>,
         sectionName: string
     ): void => {
@@ -64,65 +103,29 @@ function ContentPageInner() {
         setTimeout(() => {
             sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 300);
-    };
+    }, []);
 
-    const experiences: Experience[] = [
-        {
-            role: "Cloud Developer",
-            company: "AWS Cloud Innovation Center",
-            period: "Apr 2025 - Present",
-            location: "Scottsdale, AZ",
-            description: "Building scalable AI/ML solutions on AWS for public sector use cases using cloud infrastructure.",
-            skills: ["AWS", "Cloud Infrastructure", "Backend Development"]
-        },
-        {
-            role: "Machine Learning Intern",
-            company: "ChargeZone",
-            period: "Aug 2024 - Dec 2024",
-            location: "Tempe, AZ",
-            description: "Developed EV charging data pipeline & analysis to drive insights and business strategy",
-            skills: ["Python", "ML Modelling", "Data Preprocessing", "Data pipelines"]
-        },
-        {
-            role: "Technology Intern",
-            company: "Hitachi Energy",
-            period: "Jun 2024 - Aug 2024",
-            location: "Remote",
-            description: "Enhanced Hitachi's Magshare with AI/Blockchain solutions, including a smart contract POC and a time-saving AI chatbot",
-            skills: ["React", "Node.js", "MongoDB", "REST APIs"]
-        },
-    ];
-
-    const featuredProjects: Project[] = getFeaturedProjects();
-
-    // Color palette for different project types
-    const projectColors = [
-        { border: '#4F46E5', gradient: 'linear-gradient(145deg, #4F46E5, #000)' }, // Indigo
-        { border: '#10B981', gradient: 'linear-gradient(210deg, #10B981, #000)' }, // Green
-        { border: '#F59E0B', gradient: 'linear-gradient(165deg, #F59E0B, #000)' }, // Amber
-        { border: '#EF4444', gradient: 'linear-gradient(195deg, #EF4444, #000)' }, // Red
-        { border: '#8B5CF6', gradient: 'linear-gradient(225deg, #8B5CF6, #000)' }, // Purple
-        { border: '#06B6D4', gradient: 'linear-gradient(135deg, #06B6D4, #000)' }, // Cyan
-        { border: '#EC4899', gradient: 'linear-gradient(180deg, #EC4899, #000)' }, // Pink
-        { border: '#14B8A6', gradient: 'linear-gradient(150deg, #14B8A6, #000)' }, // Teal
-    ];
-
-    // Transform projects to ChromaItem format
-    const chromaItems: ChromaItem[] = PROJECTS.map((project, index) => {
-        const colorIndex = index % projectColors.length;
+    // Memoize expensive computations
+    const chromaItems: ChromaItem[] = useMemo(() => PROJECTS.map((project, index) => {
+        const colorIndex = index % PROJECT_COLORS.length;
         return {
             image: project.image || '/project-placeholder.jpg',
             title: project.title,
-            subtitle: project.tech.slice(0, 2).join(', '), // Show first 2 tech items
+            subtitle: project.tech.slice(0, 2).join(', '),
             handle: project.featured ? '⭐ Featured' : `${project.tech.length} technologies`,
             location: project.github ? 'View on GitHub' : undefined,
-            borderColor: projectColors[colorIndex].border,
-            gradient: projectColors[colorIndex].gradient,
+            borderColor: PROJECT_COLORS[colorIndex].border,
+            gradient: PROJECT_COLORS[colorIndex].gradient,
             url: project.link || project.github
         };
-    });
+    }), []);
 
-    const dockItems = [
+    // Callback for experience card order changes
+    const handleOrderChange = useCallback((cards: any[]) => {
+        setCurrentCardOrder(cards);
+    }, []);
+
+    const dockItems = useMemo(() => [
         {
             icon: <Home className="w-6 h-6 text-[#66FCF1]" />,
             label: "Home",
@@ -147,8 +150,8 @@ function ContentPageInner() {
             icon: <BookOpen className="w-6 h-6 text-[#66FCF1]" />,
             label: "Blog",
             onClick: () => scrollToSection(blogRef, 'Blog')
-        },
-    ];
+        }
+    ], [scrollToSection]);
 
     if (!mounted) {
         return (
@@ -315,11 +318,11 @@ function ContentPageInner() {
                                 <div className="text-[#66FCF1] text-lg font-bold mb-3">
                                     Experiences
                                 </div>
-                                {experiences.map((exp, index) => {
+                                {EXPERIENCES.map((exp, index) => {
                                     // Find the top card (last in currentCardOrder array)
                                     const topCard = currentCardOrder.length > 0
                                         ? currentCardOrder[currentCardOrder.length - 1]
-                                        : experiences[0];
+                                        : EXPERIENCES[0];
 
                                     // Check if this experience is the top card by comparing role
                                     const isTopCard = exp.role === topCard.role;
@@ -346,12 +349,12 @@ function ContentPageInner() {
 
                             {/* Card Stack */}
                             <ExperienceStack
-                                experiences={experiences}
+                                experiences={EXPERIENCES}
                                 cardDimensions={{ width: 650, height: 450 }}
                                 sensitivity={150}
                                 sendToBackOnClick={true}
                                 randomRotation={false}
-                                onOrderChange={(cards) => setCurrentCardOrder(cards)}
+                                onOrderChange={handleOrderChange}
                             />
                         </div>
                     </div>

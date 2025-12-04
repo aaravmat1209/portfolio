@@ -1,0 +1,77 @@
+/* Performance Optimizations for Animations */
+
+/* Enable hardware acceleration globally */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Force GPU acceleration for animated elements */
+.split-char,
+.split-word,
+.split-line,
+[class*="motion"],
+[class*="animate"] {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Optimize canvas rendering */
+canvas {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Optimize scroll performance */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Optimize transforms */
+.transform-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Reduce paint areas */
+.isolate {
+    isolation: isolate;
+}
+
+/* Optimize opacity transitions */
+.opacity-transition {
+    will-change: opacity;
+}
+
+/* Contain layout shifts */
+.contain-layout {
+    contain: layout;
+}
+
+.contain-paint {
+    contain: paint;
+}
+
+.contain-strict {
+    contain: strict;
+}
