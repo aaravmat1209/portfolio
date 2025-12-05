@@ -4,8 +4,9 @@ import React, { useState, useEffect, useRef, useMemo, useCallback, Suspense } fr
 import { useSearchParams } from 'next/navigation';
 import {
     ChevronRight, ChevronLeft, ArrowRight,
-    Menu, X, Play, User, Github
+    Menu, X, Play, User, Github, FileText, Mail
 } from 'lucide-react';
+import { SiGithub, SiLinkedin, SiMedium, SiInstagram } from 'react-icons/si';
 import LogoLoop from '@/components/LogoLoop';
 import Timeline from '@/components/Timeline';
 import BlogCardSwap, { BlogCardSwapRef } from '@/components/BlogCardSwap';
@@ -92,7 +93,15 @@ function ContentPageInner() {
     const { x, y } = useMousePosition();
     const searchParams = useSearchParams();
 
+    const [windowWidth, setWindowWidth] = useState(0);
     const [activeSection, setActiveSection] = useState<string>('');
+
+    useEffect(() => {
+        setWindowWidth(window.innerWidth);
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Refs for scrolling
     const heroRef = useRef<HTMLDivElement>(null);
@@ -305,7 +314,7 @@ function ContentPageInner() {
                         </div>
                     </div>
 
-                    <h1 id="heroHeadline" className="text-5xl lg:text-7xl font-bold tracking-tight mb-6 min-h-[1.2em]">
+                    <h1 id="heroHeadline" className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-6 min-h-[1.2em]">
                         Aarav Matalia
                     </h1>
 
@@ -331,7 +340,7 @@ function ContentPageInner() {
                     </div>
 
                     {/* Stats */}
-                    <div className="mt-20 grid grid-cols-3 gap-8 max-w-lg mx-auto opacity-0 animate-fade-in delay-1500">
+                    <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-lg mx-auto opacity-0 animate-fade-in delay-1500">
                         <div className="text-center">
                             <div className="text-3xl font-bold text-white">3+</div>
                             <div className="text-sm text-[var(--muted)] mt-1">Years Coding</div>
@@ -423,7 +432,7 @@ function ContentPageInner() {
                     <div className="py-8">
                         <ChromaGrid
                             items={chromaItems}
-                            radius={350}
+                            radius={windowWidth < 640 ? 150 : 350}
                             damping={0.5}
                             fadeOut={0.7}
                         />
@@ -468,11 +477,11 @@ function ContentPageInner() {
                         </p>
                     </div>
 
-                    <div className="min-h-[500px] flex items-center justify-end">
+                    <div className="min-h-[500px] flex items-center justify-center lg:justify-end">
                         <BlogCardSwap
                             ref={blogCardSwapRef}
                             posts={BLOG_POSTS}
-                            width={650}
+                            width={windowWidth < 640 ? windowWidth - 48 : 650}
                             height={400}
                         />
                     </div>
@@ -481,29 +490,28 @@ function ContentPageInner() {
                 {/* Footer with Social Links */}
                 <div ref={contactRef} className="w-full py-12 border-t border-[var(--surface)] mt-20 scroll-mt-40">
                     <div className="flex flex-col items-center gap-8">
-                        <div className="flex gap-8">
-                            {Object.keys(LINKS).map((key) => {
-                                const link = LINKS[key as keyof typeof LINKS];
-                                return (
-                                    <a
-                                        key={key}
-                                        href={link.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="p-3 rounded-full bg-[var(--surface)] border border-[var(--primary)]/30 text-[var(--primary)]
-                                            hover:bg-[var(--primary)] hover:text-[var(--background)] transition-all duration-300
-                                            hover:scale-110 hover:shadow-lg hover:shadow-[var(--primary)]/20"
-                                        aria-label={link.title}
-                                    >
-                                        <img
-                                            src={link.icon.src}
-                                            alt={link.title}
-                                            className="w-6 h-6"
-                                            style={{ filter: 'currentColor' }}
-                                        />
-                                    </a>
-                                );
-                            })}
+                        <div className="flex flex-wrap justify-center gap-4">
+                            {[
+                                { node: <FileText className="w-6 h-6" />, title: 'Read CV', href: 'https://jade-binnie-84.tiiny.site' },
+                                { node: <SiGithub className="w-6 h-6" />, title: 'GitHub', href: 'https://github.com/aaravmat1209' },
+                                { node: <SiLinkedin className="w-6 h-6" />, title: 'LinkedIn', href: 'https://www.linkedin.com/in/aarav-matalia/' },
+                                { node: <SiMedium className="w-6 h-6" />, title: 'Medium', href: 'https://medium.com/@Aarav129' },
+                                { node: <SiInstagram className="w-6 h-6" />, title: 'Instagram', href: 'https://www.instagram.com/boy_got_beats/' },
+                                { node: <Mail className="w-6 h-6" />, title: 'Email', href: 'mailto:mataliaaarav@gmail.com' }
+                            ].map((link) => (
+                                <a
+                                    key={link.title}
+                                    href={link.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="p-3 rounded-full bg-[var(--surface)] border border-[var(--primary)]/30 text-[var(--primary)]
+                                        hover:bg-[var(--primary)] hover:text-[var(--background)] transition-all duration-300
+                                        hover:scale-110 hover:shadow-lg hover:shadow-[var(--primary)]/20 flex items-center justify-center"
+                                    aria-label={link.title}
+                                >
+                                    {link.node}
+                                </a>
+                            ))}
                         </div>
                         <div className="text-center space-y-2">
                             <p className="text-[var(--primary)] font-medium text-lg">
