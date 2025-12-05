@@ -229,7 +229,7 @@ function ContentPageInner() {
                         </div>
 
                         <nav className="hidden md:flex items-center gap-2">
-                            {['About', 'Work', 'Experience', 'Blog', 'Contact'].map((item) => (
+                            {['About', 'Experience', 'Work', 'Blog', 'Contact'].map((item) => (
                                 <button
                                     key={item}
                                     onClick={() => {
@@ -278,7 +278,7 @@ function ContentPageInner() {
                     {mobileMenuOpen && (
                         <div className="absolute top-full left-4 right-4 mt-2 bg-[var(--surface)] border border-[var(--primary)]/10 rounded-2xl p-4 shadow-2xl md:hidden">
                             <div className="flex flex-col gap-4">
-                                {['About', 'Work', 'Experience', 'Blog', 'Contact'].map((item) => (
+                                {['About', 'Experience', 'Work', 'Blog', 'Contact'].map((item) => (
                                     <button
                                         key={item}
                                         onClick={() => {
