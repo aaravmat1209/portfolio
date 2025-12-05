@@ -158,13 +158,12 @@ export default function ProjectsPage() {
 
           {/* ChromaGrid */}
           {filteredProjects.length > 0 ? (
-            <div className="min-h-[600px]">
+            <div className="py-8">
               <ChromaGrid
                 items={chromaItems}
                 radius={350}
                 damping={0.5}
                 fadeOut={0.7}
-                className="py-8"
               />
             </div>
           ) : (

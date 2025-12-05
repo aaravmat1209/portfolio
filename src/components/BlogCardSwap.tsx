@@ -84,15 +84,15 @@ const BlogCardSwap = forwardRef<BlogCardSwapRef, BlogCardSwapProps>(
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'space-between',
-                                boxShadow: '0 10px 40px rgba(102, 252, 241, 0.15)',
+                                boxShadow: '0 10px 40px rgba(192, 132, 252, 0.15)',
                                 cursor: 'pointer',
                             }}
                         >
                             <div>
-                                <h3 className="text-2xl md:text-3xl font-bold text-[#66FCF1] mb-3">
+                                <h3 className="text-2xl md:text-3xl font-bold text-[#C084FC] mb-3">
                                     {post.title}
                                 </h3>
-                                <p className="text-sm text-[#66FCF1] bg-[#0B0C10] px-4 py-2 rounded-lg font-medium border border-[#66FCF1]/30 inline-block mb-4">
+                                <p className="text-sm text-[#C084FC] bg-[#0B0C10] px-4 py-2 rounded-lg font-medium border border-[#C084FC]/30 inline-block mb-4">
                                     {post.date}
                                 </p>
                                 <p className="text-[#C5C6C7] leading-relaxed text-base mb-4">
@@ -101,7 +101,7 @@ const BlogCardSwap = forwardRef<BlogCardSwapRef, BlogCardSwapProps>(
                             </div>
                             <button
                                 onClick={(e) => handleReadMore(post, e)}
-                                className="flex items-center gap-2 text-[#66FCF1] font-medium hover:text-[#45A29E] transition-colors"
+                                className="flex items-center gap-2 text-[#C084FC] font-medium hover:text-[#A855F7] transition-colors"
                             >
                                 <span>Read more</span>
                                 <span>→</span>
@@ -136,8 +136,8 @@ const BlogCardSwap = forwardRef<BlogCardSwapRef, BlogCardSwapProps>(
                                 }}
                                 className="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto
                                 bg-gradient-to-br from-[#1F2833]/95 to-[#0B0C10]/95
-                                backdrop-blur-xl border-2 border-[#66FCF1]/50 rounded-3xl p-8 md:p-12
-                                shadow-2xl shadow-[#66FCF1]/20"
+                                backdrop-blur-xl border-2 border-[#C084FC]/50 rounded-3xl p-8 md:p-12
+                                shadow-2xl shadow-[#C084FC]/20"
                                 onClick={(e) => e.stopPropagation()}
                             >
                                 {/* Close hint */}
@@ -148,15 +148,15 @@ const BlogCardSwap = forwardRef<BlogCardSwapRef, BlogCardSwapProps>(
                                 {/* Article Content */}
                                 <div className="space-y-6">
                                     <div>
-                                        <h2 className="text-3xl md:text-5xl font-bold text-[#66FCF1] mb-4">
+                                        <h2 className="text-3xl md:text-5xl font-bold text-[#C084FC] mb-4">
                                             {expandedPost.title}
                                         </h2>
-                                        <p className="text-sm text-[#66FCF1] bg-[#0B0C10] px-4 py-2 rounded-lg font-medium border border-[#66FCF1]/30 inline-block">
+                                        <p className="text-sm text-[#C084FC] bg-[#0B0C10] px-4 py-2 rounded-lg font-medium border border-[#C084FC]/30 inline-block">
                                             {expandedPost.date}
                                         </p>
                                     </div>
 
-                                    <div className="prose prose-invert prose-cyan max-w-none">
+                                    <div className="prose prose-invert prose-purple max-w-none">
                                         <p className="text-[#C5C6C7] text-lg leading-relaxed mb-6">
                                             {expandedPost.excerpt}
                                         </p>
@@ -183,9 +183,9 @@ const BlogCardSwap = forwardRef<BlogCardSwapRef, BlogCardSwapProps>(
                                     <div className="pt-6 border-t border-[#1F2833]">
                                         <a
                                             href={`/blog/${expandedPost.slug}`}
-                                            className="inline-flex items-center gap-2 px-6 py-3 bg-[#66FCF1] text-[#0B0C10]
+                                            className="inline-flex items-center gap-2 px-6 py-3 bg-[#C084FC] text-[#0B0C10]
                                             rounded-lg font-semibold transition-all duration-300
-                                            hover:scale-105 hover:shadow-lg hover:shadow-[#66FCF1]/50"
+                                            hover:scale-105 hover:shadow-lg hover:shadow-[#C084FC]/50"
                                         >
                                             View Full Article
                                             <span>→</span>
