@@ -221,9 +221,11 @@ function ContentPageInner() {
                 <div className="max-w-7xl mx-auto bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/10 rounded-2xl px-6 py-4 shadow-lg">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 group cursor-pointer" onClick={() => scrollToSection(heroRef)}>
-                            <div className="bg-[var(--primary)]/10 border border-[var(--primary)]/20 rounded-xl p-2 group-hover:bg-[var(--primary)]/20 transition-colors">
-                                <span className="font-bold text-[var(--primary)]">AM</span>
-                            </div>
+                            <img
+                                src="/nw_logo.png"
+                                alt="Aarav Matalia"
+                                className="h-10 w-auto object-contain"
+                            />
                         </div>
 
                         <nav className="hidden md:flex items-center gap-2">
