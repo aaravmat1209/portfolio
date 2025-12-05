@@ -420,22 +420,35 @@ function ContentPageInner() {
 
 
                 {/* Projects Section with ChromaGrid */}
-                <div ref={workRef} className="w-full mx-auto mb-20 scroll-mt-40">
-                    <div className="text-center mb-8">
-                        <h2 className="text-4xl lg:text-5xl font-light tracking-tight mb-4">
-                            My <span className="text-[var(--muted)]">Projects</span>
-                        </h2>
-                        <p className="text-[var(--muted)] text-lg max-w-2xl mx-auto">
-                            Explore my portfolio of innovative projects spanning AI/ML, web development, and cloud solutions
-                        </p>
-                    </div>
-                    <div className="py-8">
-                        <ChromaGrid
-                            items={chromaItems}
-                            radius={windowWidth < 640 ? 150 : 350}
-                            damping={0.5}
-                            fadeOut={0.7}
+                <div ref={workRef} className="w-full mb-20 scroll-mt-40 relative -mx-4">
+                    {/* Background Image for Projects Section - Full Width */}
+                    <div className="absolute inset-0 left-[calc(-50vw+50%)] right-[calc(-50vw+50%)] w-screen z-0 overflow-hidden">
+                        <img
+                            src="/background-stars.jpg"
+                            alt="Background"
+                            className="w-full h-full object-cover opacity-60"
+                            style={{ objectPosition: 'center bottom' }}
                         />
+                        <div className="absolute inset-0 bg-[var(--background)]/40 backdrop-blur-[1px]"></div>
+                    </div>
+
+                    <div className="relative z-10 py-12 px-4">
+                        <div className="text-center mb-8">
+                            <h2 className="text-4xl lg:text-5xl font-light tracking-tight mb-4">
+                                My <span className="text-[var(--muted)]">Projects</span>
+                            </h2>
+                            <p className="text-[var(--muted)] text-lg max-w-2xl mx-auto">
+                                Explore my portfolio of innovative projects spanning AI/ML, web development, and cloud solutions
+                            </p>
+                        </div>
+                        <div className="py-8">
+                            <ChromaGrid
+                                items={chromaItems}
+                                radius={windowWidth < 640 ? 150 : 350}
+                                damping={0.5}
+                                fadeOut={0.7}
+                            />
+                        </div>
                     </div>
                 </div>
 

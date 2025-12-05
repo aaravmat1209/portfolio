@@ -51,7 +51,7 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
                                 </div>
 
                                 {/* Role & Company */}
-                                <h3 className="text-xl md:text-2xl font-bold text-[#66FCF1] mb-1 group-hover:text-[var(--accent)] transition-colors">
+                                <h3 className="text-xl md:text-2xl font-bold text-[var(--primary)] mb-1 group-hover:text-[var(--accent)] transition-colors">
                                     {item.role}
                                 </h3>
                                 <p className="text-lg text-[var(--muted)] mb-2">
