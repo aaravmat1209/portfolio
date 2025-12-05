@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
-import { Work_Sans } from 'next/font/google'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 import './performance.css'
 import { ThemeProvider } from './theme-provider'
-
-const workSans = Work_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Aarav Matalia Website',
@@ -17,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning lang="en">
-      <body className={workSans.className}>
+      <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}>
         <ThemeProvider attribute="class" disableTransitionOnChange>
           {children}
         </ThemeProvider>

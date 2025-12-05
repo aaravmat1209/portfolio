@@ -4,39 +4,52 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Color palette from the image */
-  --color-darkest: #0B0C10;  /* Almost black with blue tint */
-  --color-dark: #1F2833;     /* Dark navy blue */
-  --color-gray: #C5C6C7;     /* Light gray with slight blue tint */
-  --color-accent: #66FCF1;   /* Bright turquoise */
-  --color-main: #45A29E;     /* Teal/turquoise */
-  
+  /* Elegant Dark Theme - Lavender & Obsidian */
+  --background: #030014;
+  /* Deep Space Indigo */
+  --surface: #0F0B1E;
+  /* Darker Indigo Surface */
+  --foreground: #E2E8F0;
+  /* Slate 200 */
+  --muted: #94A3B8;
+  /* Slate 400 */
+  --primary: #B4A0E5;
+  /* Muted Lavender */
+  --secondary: #E5B4B4;
+  /* Dusty Rose */
+  --accent: #7D7AFF;
+  /* Deep Indigo */
+  --border: rgba(180, 160, 229, 0.1);
+  /* Subtle Lavender Border */
+
+  /* Legacy mappings for compatibility */
+  --color-darkest: var(--background);
+  --color-dark: var(--surface);
+  --color-gray: var(--foreground);
+  --color-accent: var(--primary);
+  --color-main: var(--accent);
+
   /* Theme variables */
-  --background: var(--color-darkest);
-  --secondary-background: var(--color-dark);
-  --foreground: var(--color-gray);
-  --main-foreground: var(--color-darkest);
-  --main: var(--color-main);
-  --accent: var(--color-accent);
-  --border: var(--color-dark);
-  --ring: var(--color-accent);
-  --overlay: rgba(11, 12, 16, 0.7);
-  --shadow: 3px -3px 0px 0px var(--border);
-  --main-rgb: 69, 162, 158;    /* RGB equivalent for main color */
-  --accent-rgb: 102, 252, 241; /* RGB equivalent for accent color */
+  --secondary-background: var(--surface);
+  --main-foreground: var(--background);
+  --main: var(--accent);
+  --ring: var(--primary);
+  --overlay: rgba(3, 0, 20, 0.8);
+  --shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.3);
+
+  --main-rgb: 125, 122, 255;
+  /* Deep Indigo RGB */
+  --accent-rgb: 180, 160, 229;
+  /* Lavender RGB */
 }
 
 .dark {
-  /* Dark mode uses same color palette but with different assignments */
-  --background: var(--color-darkest);
-  --secondary-background: var(--color-dark);
-  --foreground: var(--color-gray);
-  --main-foreground: var(--color-darkest);
-  --main: var(--color-main);
-  --accent: var(--color-accent);
-  --border: var(--color-dark);
-  --ring: var(--color-accent);
-  --shadow: 3px -3px 0px 0px var(--border);
+  /* Dark mode uses the same elegant palette */
+  --background: #030014;
+  --foreground: #E2E8F0;
+  --primary: #B4A0E5;
+  --secondary: #E5B4B4;
+  --accent: #7D7AFF;
 }
 
 /* Light mode section removed */
@@ -104,6 +117,7 @@ body::-webkit-scrollbar-thumb {
     opacity: 0;
     transform: translate3d(0, -20px, 0);
   }
+
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
@@ -115,6 +129,7 @@ body::-webkit-scrollbar-thumb {
     opacity: 0;
     transform: translate3d(0, 20px, 0);
   }
+
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
@@ -126,6 +141,7 @@ body::-webkit-scrollbar-thumb {
     opacity: 0;
     transform: translate3d(-20px, 0, 0);
   }
+
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
@@ -137,6 +153,7 @@ body::-webkit-scrollbar-thumb {
     opacity: 0;
     transform: translate3d(20px, 0, 0);
   }
+
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
@@ -144,27 +161,36 @@ body::-webkit-scrollbar-thumb {
 }
 
 @keyframes bounceSlight {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-3px);
   }
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.8;
   }
 }
 
 @keyframes glow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 5px 2px rgba(var(--accent-rgb), 0.3);
   }
+
   50% {
     box-shadow: 0 0 15px 5px rgba(var(--accent-rgb), 0.5);
   }
@@ -200,71 +226,139 @@ body::-webkit-scrollbar-thumb {
 
 /* Advanced Animation Keyframes */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 5px 0 rgba(var(--main-rgb), 0.3); }
-  50% { box-shadow: 0 0 20px 5px rgba(var(--main-rgb), 0.5); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px 0 rgba(var(--main-rgb), 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 20px 5px rgba(var(--main-rgb), 0.5);
+  }
 }
 
 @keyframes accent-pulse-glow {
-  0%, 100% { box-shadow: 0 0 5px 0 rgba(var(--accent-rgb), 0.3); }
-  50% { box-shadow: 0 0 20px 5px rgba(var(--accent-rgb), 0.5); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px 0 rgba(var(--accent-rgb), 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 20px 5px rgba(var(--accent-rgb), 0.5);
+  }
 }
 
 @keyframes neon-border {
-  0%, 100% { 
+
+  0%,
+  100% {
     box-shadow: 0 0 5px var(--accent),
-                0 0 10px var(--accent),
-                0 0 15px var(--accent),
-                0 0 20px var(--accent);
+      0 0 10px var(--accent),
+      0 0 15px var(--accent),
+      0 0 20px var(--accent);
   }
-  50% { 
+
+  50% {
     box-shadow: 0 0 2px var(--accent),
-                0 0 5px var(--accent),
-                0 0 7px var(--accent),
-                0 0 10px var(--accent);
+      0 0 5px var(--accent),
+      0 0 7px var(--accent),
+      0 0 10px var(--accent);
   }
 }
 
 @keyframes text-shadow-pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     text-shadow: 0 0 4px rgba(var(--accent-rgb), 0.3),
-                 0 0 8px rgba(var(--accent-rgb), 0.3);
+      0 0 8px rgba(var(--accent-rgb), 0.3);
   }
+
   50% {
     text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.5),
-                 0 0 16px rgba(var(--accent-rgb), 0.5);
+      0 0 16px rgba(var(--accent-rgb), 0.5);
   }
 }
 
 @keyframes bounceIn {
-  0% { transform: scale(0.3); opacity: 0; }
-  40% { transform: scale(1.1); }
-  60% { transform: scale(0.9); }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+
+  40% {
+    transform: scale(1.1);
+  }
+
+  60% {
+    transform: scale(0.9);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes slideInRight {
-  0% { transform: translateX(50px); opacity: 0; }
-  100% { transform: translateX(0); opacity: 1; }
+  0% {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes slideInLeft {
-  0% { transform: translateX(-50px); opacity: 0; }
-  100% { transform: translateX(0); opacity: 1; }
+  0% {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes rotateIn {
-  0% { transform: rotate(-20deg) scale(0.8); opacity: 0; }
-  100% { transform: rotate(0) scale(1); opacity: 1; }
+  0% {
+    transform: rotate(-20deg) scale(0.8);
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes expandWidth {
-  0% { width: 0; opacity: 0; }
-  100% { width: 100%; opacity: 1; }
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
 }
 
 /* Animation utility classes */
@@ -368,30 +462,52 @@ body::-webkit-scrollbar-thumb {
 
 /* Add to the bottom of your globals.css */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;             /* Chrome, Safari and Opera */
+  display: none;
+  /* Chrome, Safari and Opera */
 }
 
 
 
 /* Add these new animation keyframes to your existing CSS */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes cloud {
-  0% { transform: translateX(110%); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(110%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* Add these new utility classes */
@@ -409,22 +525,29 @@ body::-webkit-scrollbar-thumb {
 }
 
 @keyframes float-slow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) translateX(0) rotate(0deg);
   }
+
   33% {
     transform: translateY(-15px) translateX(10px) rotate(5deg);
   }
+
   66% {
     transform: translateY(10px) translateX(-10px) rotate(-5deg);
   }
 }
 
 @keyframes pulse-slow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.4;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.7;
     transform: scale(1.15);
@@ -441,9 +564,17 @@ body::-webkit-scrollbar-thumb {
 
 /* Gradient animation for GradientText component */
 @keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .animate-gradient {
